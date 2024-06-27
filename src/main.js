@@ -15,20 +15,22 @@ let perPage = 15;
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
  
-  query =input.value.trim();
+  query = input.value.trim();
 
   if (query === '') {
-    showError('Please enter a search query.');
+    showError('Please enter a search query!');
      hideLoadMore(btnLoadMore);
     return;
   }
 
   page = 1;
+
   showLoader(loader);
   hideLoadMore(btnLoadMore);
   gallery.innerHTML = ''; 
+
   try {
-    const data = await fetchImages(query, page, perPage);
+    const data = await findImages(query, page, perPage);
     maxPage = Math.ceil(data.totalHits / perPage);
     
     if (maxPage === 0) {
