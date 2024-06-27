@@ -10,12 +10,18 @@
   <body>
     <div class="container">
       <form id="name-form" class="name-form">
-        <input type="text" id="name-input" placeholder="Search images" />
+        <input
+          type="text"
+          id="name-input"
+          name="query"
+          placeholder="Search images"
+        />
         <button type="submit">Search</button>
       </form>
-      <div id="loader" class="loader" style="display: none"></div>
-      <div id="gallery" class="gallery"></div>
     </div>
+    <div class="gallery"></div>
+    <button type="submit" class="btn-load-more active">Load more</button>
+    <div class="loader hidden" id="loader"></div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>
