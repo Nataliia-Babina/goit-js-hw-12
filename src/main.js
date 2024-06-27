@@ -1,5 +1,5 @@
 import { findImages } from './js/pixabay-api';
-import { renderImageGallery, showError, showLoadMore, hideLoadMore, showLoader, hideLoader, updateBtnStatus, smoothScroll } from './js/render-functions';
+import { displayImg, showError, showLoadMore, hideLoadMore, showLoader, hideLoader, changesButton, newScroll } from './js/render-functions';
  
 const form = document.querySelector('.name-form');
 const input = document.querySelector('input[name="query"]');
@@ -34,7 +34,7 @@ form.addEventListener('submit', async (e) => {
     if (maxPage === 0) {
       showError('Empty Result');
       hideLoader(loader);
-      updateBtnStatus(page, maxPage, btnLoadMore);
+      changesButton(page, maxPage, btnLoadMore);
       return;
     };
 
@@ -44,7 +44,7 @@ form.addEventListener('submit', async (e) => {
       return;
     };
     showLoadMore(btnLoadMore);
-    renderImageGallery(data.hits);
+    displayImg(data.hits);
     
     } catch (error) {
       gallery.innerHTML = ''; 
@@ -72,14 +72,14 @@ form.addEventListener('submit', async (e) => {
       return;
     }
 
-    renderImageGallery(data.hits);
+    displayImg(data.hits);
     
   } catch (error) {
     gallery.innerHTML = '';
     showError('Something went wrong. Please try again later.');
   } finally {
     hideLoader(loader);
-    updateBtnStatus(page, maxPage, btnLoadMore);
-    smoothScroll();
+    changesButton(page, maxPage, btnLoadMore);
+    newScroll();
   }
 });
